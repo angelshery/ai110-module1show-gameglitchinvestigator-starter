@@ -25,13 +25,48 @@ It wrote the code, ran away, and now the game is unplayable.
 
 ## 📝 Document Your Experience
 
-- [ ] Describe the game's purpose.
-- [ ] Detail which bugs you found.
-- [ ] Explain what fixes you applied.
+- [x] Describe the game's purpose.
+The purpose of this game is to let the player guess a secret number within a limited number of attempts.
+The player receives hints after each guess indicating whether the guess is too high or too low.
+The goal is to correctly guess the secret number before running out of attempts.
+
+- [x] Detail which bugs you found.
+Hint logic was incorrect
+When the guess was higher than the secret number, the game sometimes displayed hints that suggested guessing higher instead of lower.
+
+Secret number type bug
+The secret number was sometimes converted into a string during gameplay, which caused incorrect comparisons between the guess and the secret number.
+
+Difficulty range inconsistency
+The range for Hard difficulty was smaller than the range for Normal difficulty, which made Hard mode easier than expected.
+
+- [x] Explain what fixes you applied.
+Corrected the hint logic so that:
+
+"Too High" → hint shows Go LOWER
+
+"Too Low" → hint shows Go HIGHER
+
+Removed the code that converted the secret number into a string, ensuring comparisons always use integers.
+
+Refactored the game logic functions into logic_utils.py:
+
+get_range_for_difficulty()
+
+parse_guess()
+
+check_guess()
+
+update_score()
+
+Updated app.py to import and use these functions properly.
+
+Ran pytest to verify that the core game logic functions behaved correctly.
 
 ## 📸 Demo
 
-- [ ] [Insert a screenshot of your fixed, winning game here]
+- [x] [Insert a screenshot of your fixed, winning game here]
+![alt text](win_screenshot.png)
 
 ## 🚀 Stretch Features
 
